@@ -1,6 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 const {VueLoaderPlugin} = require('vue-loader');
 
 module.exports = {
@@ -23,7 +24,7 @@ module.exports = {
       },
       {
         test: /\.pug$/,
-        loader: 'pug-plain-loader'
+        loaders: ['pug-plain-loader'],
       },
       // this will apply to both plain .scss files
       // AND <style lang="scss"> blocks in vue files
@@ -37,8 +38,8 @@ module.exports = {
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: "css-loader"
+          fallback: 'style-loader',
+          use: 'css-loader'
         })
       },
       {
@@ -64,7 +65,10 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin("main.css"),
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new CopyWebpackPlugin([
+      {from:'assets/img',to:'images'}
+    ]),
   ],
   devtool: '#eval-source-map'
 }

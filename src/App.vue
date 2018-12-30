@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-   <!-- <Header />-->
+    <Header />
     <div class="content">
       <router-view :key="$route.fullPath"></router-view>
     </div>
@@ -8,12 +8,13 @@
 </template>
 
 <script>
-  //import Header from './components/parts/Header.vue'
+
+  import Header from './components/Parts/Header.vue'
 
   export default {
     name: 'app',
     components: {
-     // Header
+      Header
     }
   }
 </script>

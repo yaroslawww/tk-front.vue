@@ -10,12 +10,15 @@ export default new Router({
       name: 'home',
       component: Home
     }, {
+      path: '/home',
+      redirect: '/'
+    }, {
       path: '/404',
-      name: 'home',
+      name: '404',
       component: Error404
     }, {
       path: '*',
-      redirect: '/404'
+      component: Error404
     }
   ]
 });
